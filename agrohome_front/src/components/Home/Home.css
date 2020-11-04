@@ -1,0 +1,24 @@
+.carousel-caption {
+    font-family: cursive;
+}
+
+.carousel-inner > .carousel-item > img {
+    height: 60vh;
+}
+
+.to-left {
+    left: 25%;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.slider {
+    width: 100%;
+    background-color: #fff;
+}
