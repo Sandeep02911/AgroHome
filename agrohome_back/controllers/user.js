@@ -29,9 +29,23 @@ exports.update = (req, res) => {
                 return res.status(400).json({ error: "User not found" });
             }
 
-            const { _id, name, email, access_level, item_history } = user;
+            const {
+                _id,
+                name,
+                email,
+                access_level,
+                mobile_no,
+                item_history,
+            } = user;
             res.json({
-                user: { _id, access_level, name, email, item_history },
+                user: {
+                    _id,
+                    access_level,
+                    name,
+                    email,
+                    mobile_no,
+                    item_history,
+                },
             });
         }
     );

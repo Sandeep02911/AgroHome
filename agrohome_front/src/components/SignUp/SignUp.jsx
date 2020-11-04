@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./SignUp.css";
+import { API } from "../../config";
 
 export class SignUp extends Component {
     constructor(props) {
@@ -7,11 +8,53 @@ export class SignUp extends Component {
 
         this.state = {
             click: false,
+            values_su: {
+                name: "",
+                email: "",
+                mobile_no: 0,
+                password: "",
+                error: "",
+                success: false,
+            },
         };
     }
 
+    handleChangeSU = (eventName) => (event) => {
+        this.setState({
+            values_su: {
+                ...this.state.values_su,
+                error: false,
+                success: true,
+                [eventName]: event.target.value,
+            },
+        });
+    };
+
     handleClick = () => {
         this.setState({ click: !this.state.click });
+        console.log(API);
+    };
+
+    signup = (user) => {
+        return fetch(`${API}/signup`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(user),
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .catch((err) => console.log(err));
+    };
+
+    clickSubmit = (e) => {
+        e.preventDefault();
+        const { name, email, mobile_no, password } = this.state.values_su;
+        this.signup({ name, email, mobile_no, password });
     };
 
     render() {
@@ -51,11 +94,31 @@ export class SignUp extends Component {
                     <div className="form-container sign-up-container">
                         <form action="/">
                             <h2>Create Account</h2>
-                            <input type="text" placeholder="Name" />
-                            <input type="email" placeholder="Email" />
-                            <input type="tel" placeholder="Mobile Number" />
-                            <input type="password" placeholder="Password" />
-                            <button>Sign up</button>
+                            <input
+                                onChange={this.handleChangeSU("name")}
+                                type="text"
+                                placeholder="Name"
+                                value={this.state.values_su.name}
+                            />
+                            <input
+                                onChange={this.handleChangeSU("email")}
+                                type="email"
+                                placeholder="Email"
+                                value={this.state.values_su.email}
+                            />
+                            <input
+                                onChange={this.handleChangeSU("mobile_no")}
+                                type="tel"
+                                placeholder="Mobile Number"
+                                value={this.state.values_su.mobile_no}
+                            />
+                            <input
+                                onChange={this.handleChangeSU("password")}
+                                type="password"
+                                placeholder="Password"
+                                value={this.state.values_su.password}
+                            />
+                            <button onClick={this.clickSubmit}>Sign up</button>
 
                             <span>or sign up using</span>
 

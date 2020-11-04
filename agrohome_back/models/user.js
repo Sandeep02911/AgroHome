@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema(
             default: 0,
         },
 
+        mobile_no: {
+            type: Number,
+        },
+
         item_history: {
             type: Array,
             default: [],

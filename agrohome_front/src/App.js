@@ -6,12 +6,9 @@ import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home";
 import Categories from "./components/Categories/Categories";
 import Contact from "./components/Info/Contact";
-import About from "./components/Info/About"
-import Cart from "./components/Cart/Cart"
-import SignUp from "./components/SignUp/SignUp"
-
-
-
+import About from "./components/Info/About";
+import Cart from "./components/Cart/Cart";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
     return (
